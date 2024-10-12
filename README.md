@@ -2,7 +2,8 @@
 
 Terraform module to provision IAM Role and Policy resources across an AWS Organization using CloudFormation StackSets.
 
-> The module uses a CloudFormation template to deploy the resources, so other type of resources can be deployed. However, the module is intended for IAM, as it does not include the possibility to select regions. 
+> [!IMPORTANT] 
+> The module uses a CloudFormation template to deploy the resources, so other type of resources can be deployed. However, the module is intended for IAM, as it will not include other features needed for other resources, such as the option to select multiple regions. 
 
 # Usage
 
