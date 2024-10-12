@@ -1,0 +1,67 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Parameters:
+  RoleName:
+    Type: String
+    Description: IAM Role Name
+  RoleDescription:
+    Type: String
+    Description: IAM Role Description
+    Default: ""
+  RoleSessionDuration:
+    Type: Number
+    Description: IAM Role Max Session Duration
+    Default: 14400
+  PolicyName:
+    Type: String
+    Description: IAM Managed read and write policy name
+  PolicyDescription:
+    Type: String
+    Description: IAM Managed Policy Description
+    Default: ""
+  IAMPath:
+    Type: String
+    Description: IAM Role and Policy Path
+    Default: "/"
+  TrustedAccount:
+    Type: String
+    Description: AWS trusted account ID
+  TrustedRole:
+    Type: String
+    Description: Allowed IAM Role ARN
+Resources:
+  Role:
+    Type: 'AWS::IAM::Role'
+    Properties:
+      RoleName: !Ref RoleName
+      Description: !Ref RoleDescription
+      MaxSessionDuration: !Ref RoleSessionDuration
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              AWS:
+                !Ref TrustedAccount
+            Action:
+              - 'sts:AssumeRole'
+            Condition:
+              ArnLike:
+                'aws:PrincipalArn': !Ref TrustedRole
+      Path: !Ref IAMPath
+      ManagedPolicyArns:
+        - !Ref RolePolicy
+        - arn:aws:iam::aws:policy/SecurityAudit
+  RolePolicy:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      ManagedPolicyName: !Ref PolicyName
+      Description: !Ref PolicyDescription
+      Path: !Ref IAMPath
+      PolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Sid: SecurityHubImport
+            Effect: Allow
+            Action:
+              - securityhub:BatchImportFindings
+            Resource: '*'
