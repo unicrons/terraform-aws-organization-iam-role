@@ -13,7 +13,7 @@ data "aws_caller_identity" "this" {}
 data "aws_organizations_organization" "this" {}
 
 module "organization_iam_role" {
-  source = "git::https://github.com/unicrons/terraform-aws-organization-iam-role.git"
+  source = "github.com/unicrons/terraform-aws-organization-iam-role"
 
   stack_set_name        = "example"
   stack_set_description = "example"
