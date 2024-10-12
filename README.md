@@ -7,7 +7,7 @@ Terraform module to provision IAM Role and Policy resources across an AWS Organi
 
 # Usage
 
-Create a CloudFormation template with your desired IAM Role and Policies. Define al your variables as template parameters. You can see an example of a template file [here](./example/role.yaml).
+Create a CloudFormation template with your desired IAM Role and Policies. Define all your variables as template parameters. You can see an example of a template file [here](./example/role.yaml).
 
 ```hcl
 data "aws_caller_identity" "this" {}
