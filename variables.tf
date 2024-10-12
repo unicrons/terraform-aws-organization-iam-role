@@ -16,7 +16,7 @@ variable "auto_deployment" {
 }
 
 variable "retain_stacks" {
-  description = "Retain CloudFormation StackSet TODO."
+  description = "Whether or not to retain stacks when the account is removed."
   type        = bool
   default     = true
 }
