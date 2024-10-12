@@ -75,7 +75,7 @@ No modules.
 | <a name="input_max_concurrent_count"></a> [max\_concurrent\_count](#input\_max\_concurrent\_count) | Maximum number of accounts in which to perform this operation at one time. | `number` | `null` | no |
 | <a name="input_max_concurrent_percentage"></a> [max\_concurrent\_percentage](#input\_max\_concurrent\_percentage) | Maximum percentage of accounts in which to perform this operation at one time. | `number` | `null` | no |
 | <a name="input_organizational_unit_ids"></a> [organizational\_unit\_ids](#input\_organizational\_unit\_ids) | Organization root ID or organizational unit (OU) IDs to which StackSets deploys. | `list(string)` | `[]` | no |
-| <a name="input_retain_stacks"></a> [retain\_stacks](#input\_retain\_stacks) | Retain CloudFormation StackSet TODO. | `bool` | `true` | no |
+| <a name="input_retain_stacks"></a> [retain\_stacks](#input\_retain\_stacks) | Whether or not to retain stacks when the account is removed. | `bool` | `true` | no |
 | <a name="input_template_parameters"></a> [template\_parameters](#input\_template\_parameters) | Key-value map of input parameters for the StackSet template. | `map(string)` | `{}` | no |
 
 ## Outputs
@@ -86,4 +86,3 @@ No modules.
 | <a name="output_stack_set_arn"></a> [stack\_set\_arn](#output\_stack\_set\_arn) | CloudFormation StackSet ARN. |
 | <a name="output_stack_set_id"></a> [stack\_set\_id](#output\_stack\_set\_id) | CloudFormation StackSet Id. |
 | <a name="output_stack_set_name"></a> [stack\_set\_name](#output\_stack\_set\_name) | CloudFormation StackSet name. |
-
