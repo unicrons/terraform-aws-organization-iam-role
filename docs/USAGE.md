@@ -1,37 +1,3 @@
-# AWS Organization account IAM Role Terraform module
-
-Terraform module to provision IAM Role and Policy resources across an AWS Organization using CloudFormation StackSets.
-
-> [!IMPORTANT] 
-> The module uses a CloudFormation template to deploy the resources, so other type of resources can be deployed. However, the module is intended for IAM, as it will not include other features needed for other resources, such as the option to select multiple regions. 
-
-# Usage
-
-Create a CloudFormation template with your desired IAM Role and Policies. Define all your variables as template parameters. You can see an example of a template file [here](./example/role.yaml).
-
-```hcl
-data "aws_caller_identity" "this" {}
-data "aws_organizations_organization" "this" {}
-
-module "organization_iam_role" {
-  source = "github.com/unicrons/terraform-aws-organization-iam-role"
-
-  stack_set_name        = "example"
-  stack_set_description = "example"
-  template_path         = "${path.root}/example/role.yaml"
-
-  template_parameters = {
-    RoleName          = "example-organization-role"
-    PolicyName        = "example-organization-policy"
-    TrustedAccount    = data.aws_caller_identity.this.id
-    TrustedRole       = "arn:aws:iam::012345678912:role/my-source-role"
-  }
-
-  organizational_unit_ids = [ data.aws_organizations_organization.this.roots[0].id ]
-}
-
-```
-
 ## Requirements
 
 | Name | Version |
@@ -86,4 +52,3 @@ No modules.
 | <a name="output_stack_set_arn"></a> [stack\_set\_arn](#output\_stack\_set\_arn) | CloudFormation StackSet ARN. |
 | <a name="output_stack_set_id"></a> [stack\_set\_id](#output\_stack\_set\_id) | CloudFormation StackSet Id. |
 | <a name="output_stack_set_name"></a> [stack\_set\_name](#output\_stack\_set\_name) | CloudFormation StackSet name. |
-
