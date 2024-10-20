@@ -2,7 +2,7 @@ data "aws_caller_identity" "this" {}
 data "aws_organizations_organization" "this" {}
 
 locals {
-  call_as = data.aws_organizations_organization.this.master_account_email == data.aws_caller_identity.this.id ? null : "DELEGATED_ADMIN"
+  call_as = data.aws_organizations_organization.this.master_account_id == data.aws_caller_identity.this.id ? null : "DELEGATED_ADMIN"
 }
 
 ################################################################################
